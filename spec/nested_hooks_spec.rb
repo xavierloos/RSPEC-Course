@@ -23,3 +23,5 @@ RSpec.describe "Some magic" do
     end
   end
 end
+
+ 
