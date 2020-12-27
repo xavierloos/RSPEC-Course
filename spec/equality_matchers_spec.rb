@@ -24,13 +24,13 @@ RSpec.describe "equality matcher" do
     let(:c) { [1, 2, 3] }
     let(:d) { [1, 2, 3] }
     let(:e) { c }
-
+    # IDENTITY checks that the two things are the same object in memory
     it "cares about object identity" do
       # 'eq' checks just the values we have
       expect(c).to eq(d)
       # 'eql' checks values and type
       expect(c).to eql(d)
-      # 'equal' checks for identity
+      # 'equal' checks for IDENTITY
       expect(c).to equal(e)
       # 'equal' is the same thing as 'be'
       expect(c).to be(e)
