@@ -27,3 +27,17 @@ RSpec.describe "a random double" do
     expect(stuntman.light_on_fire).to eq true
   end
 end
+RSpec.describe "doubles" do
+  it "tests the student's knowledge of the course's content" do
+    dbc = double("Database Connection", connect: true, disconnect: "Goodbye")
+    expect(dbc.connect).to eq true
+    expect(dbc.disconnect).to eq "Goodbye"
+  end
+end
+RSpec.describe "doubles" do
+  it "tests the student's knowledge of the course's content" do
+    fs = double("File System")
+    allow(fs).to receive(:read).and_return("Romeo and Juliet")
+    allow(fs).to receive(:write).and_return(false)
+  end
+end
