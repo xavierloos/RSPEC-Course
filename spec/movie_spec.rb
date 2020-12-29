@@ -33,6 +33,10 @@ class Movie
       p actor.act
       p actor.fall_off_ladder
       p actor.light_on_fire
+      # let's say we call again act, so now the act method is receiving twice
+      # this will pass in rspec as we are using a double to test, but we are not covering all the test because we have only one act method to test
+      p actor.light_on_fire
+      #   p actor.act
     end
   end
 end
@@ -53,10 +57,21 @@ RSpec.describe Movie do
   describe "#start_shooting method" do
     it " expects the actor to do 3 actions" do
       # we write our expetations before we invoke start_shooting method, this is called a behavior driven style
-      expect(stuntman).to receive(:ready?)
-      expect(stuntman).to receive(:act)
-      expect(stuntman).to receive(:fall_off_ladder)
-      expect(stuntman).to receive(:light_on_fire)
+      #   expect(stuntman).to receive(:ready?)
+      #   expect(stuntman).to receive(:act)
+      #   expect(stuntman).to receive(:fall_off_ladder)
+      #   expect(stuntman).to receive(:light_on_fire)
+
+      # we can attach a method called ONCE, if it is receive more than once this will fail
+      expect(stuntman).to receive(:ready?).once
+      # EXACTLY: check that receive exaclty a givem number of times
+      expect(stuntman).to receive(:act).exactly(1).times
+      # AT_MOST: means that I expect to be invoke at most 1 time, if you put at_most 5 times you will have a range to be invoke from 1 to 5, if it is more than 5 this will fail
+      expect(stuntman).to receive(:fall_off_ladder).at_most(1).times
+      # TWICE: to be call 2 times
+      expect(stuntman).to receive(:light_on_fire).twice
+      # AT_LEAST: puts a boundary wehre a method must be invoked at leas this number of times
+      # expect(stuntman).to receive(:light_on_fire).at_least(2).times
       subject.start_shooting
     end
   end
