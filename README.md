@@ -1,4 +1,4 @@
-![](https://placehold.it/950x200/374c53/FFFFFF/?text=RSpec+Course)
+# RSpec Course
 
 ## General info
 
